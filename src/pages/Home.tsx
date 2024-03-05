@@ -8,7 +8,7 @@ export default function App() {
   const { allAddress } = useContext(AddressContext)
 
   return (
-    <div className={`pt-32 max-[650px]:pt-6 w-full bg-zinc-200 ${allAddress && allAddress.length > 0 ? 'h-full' : 'h-screen'}`}>
+    <div className={`pt-6 w-full ${allAddress && allAddress.length > 0 ? 'h-full' : 'h-screen'}`}>
       <div className="w-[80%] max-[500px]:w-[90%] mx-auto">
         <FormRegisterUser/>
       </div>

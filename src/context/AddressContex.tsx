@@ -1,6 +1,6 @@
 
 // imports react
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
 // types
 import { AddressContextProps } from "../@types/AddressContextProps";
@@ -8,12 +8,13 @@ import { UserProps } from "../@types/UserProps";
 import Notification from "../components/Notifier/Notification";
 
 // create context
-export const AddressContext = createContext<AddressContextProps>({ handleAddAddress: () => {}, allAddress: []});
+export const AddressContext = createContext<AddressContextProps>({ handleAddAddress: () => {}, allAddress: [], totalAddress: 0});
 
 // export provider
 export const AddressProvider = ({ children } : { children : ReactNode }) => {
 
     const [allAddress, setAddress] = useState<UserProps[]>([])
+    const [totalAddress, setTotalAddress] = useState<number>(0)
 
 
     function handleAddAddress(newAddress: UserProps){
@@ -42,8 +43,12 @@ export const AddressProvider = ({ children } : { children : ReactNode }) => {
         }
     }
 
+    useEffect(() => {
+        setTotalAddress(allAddress.length)
+    },[allAddress])
+
     return (
-        <AddressContext.Provider value={{handleAddAddress, allAddress}}>
+        <AddressContext.Provider value={{handleAddAddress, allAddress, totalAddress}}>
             {children}
         </AddressContext.Provider>
     )

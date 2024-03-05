@@ -7,7 +7,7 @@ export function TableListAllAddress(){
     const { allAddress } = useContext(AddressContext)
     
     return (
-        <div className="pb-32">
+        <div className="pb-16">
             {allAddress && allAddress.length > 0 && (
                 <div className="bg-white rounded-2xl shadow-2xl p-12 max-[750px]:p-4">
                     <h1 className="text-2xl font-bold text-black text-center mb-5">Lista de endereços</h1>
